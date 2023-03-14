@@ -25,5 +25,3 @@ return (
          })}
          </Cartas>)
 }
-
-
