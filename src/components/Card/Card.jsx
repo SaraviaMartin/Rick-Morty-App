@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import Styles from 'styled-components';
 
 const Boton = Styles.a`
@@ -12,23 +13,18 @@ color: white;
 border: 2px solid white`;
 
 
-const Detalles =  Styles.p`
-   color: #212121;
-   border: 2px solid white;
-   border-color:#DCEDC8;
-   font-size: 1.4em;
-`;
 
-
-
-export default function Card({id, name, species,gender, image, onClose}){
+export default function Card({id, name,status, species,gender, image, onClose}){
    return(
       <div>
          <Boton onClick={()=>onClose(id)}>X</Boton>
-         <Detalles>Name:{name} </Detalles>
-         <Detalles>Species:{species} </Detalles>
-         <Detalles>Gender:{gender} </Detalles>
+         <Link to={`/detail/${id}`}>
+            <h2>Name:{name}</h2>
+         </Link>
          <img src={image} alt="" />
+         <h2>Status:{status}</h2>
+         <h2>Species:{species} </h2>
+         <h2>Gender:{gender}</h2>
       </div>
    )
 }

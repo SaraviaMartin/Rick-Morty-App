@@ -11,11 +11,12 @@ export default function Cards ({characters, onClose}) {
    
 return (
    <Cartas>
-      {characters.map (({id, name, species, gender, image}) => {
+      {characters.map (({id, name, status, species, gender, image}) => {
          return (
             <Card
             id = {id}
             name = {name}
+            status= {status}
             species = {species}
             gender = {gender}
             image = {image}
