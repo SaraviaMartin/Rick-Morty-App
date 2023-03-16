@@ -10,7 +10,7 @@ const Detail = () => {
     const URL_BASE = "https://be-a-rym.up.railway.app/api";
     const KEY = "ffcda1fea673.0fe9b581e186f2c89a23";
 
-axios(`${URL_BASE}/character/${detailId}?key=${KEY}`).then((response) =>
+    axios(`${URL_BASE}/character/${detailId}?key=${KEY}`).then((response) =>
     setCharacter(response.data)
     );
 }, []);
@@ -32,7 +32,7 @@ return (
         <h3>Loading...</h3>
     )}
     </div>
-  );
+    );
 };
 
 export default Detail;
