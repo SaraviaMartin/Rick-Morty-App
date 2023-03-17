@@ -1,7 +1,7 @@
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "ADD_FAVORITE";
 
-export const addFavourite = (character) => {
+export const addFavorite = (character) => {
     return{type: ADD_FAVORITE, payload: character};
 };
 

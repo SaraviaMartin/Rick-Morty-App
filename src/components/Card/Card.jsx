@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import Styles from 'styled-components';
 import { connect } from 'react-redux';
-import { addFavorite, removeFavorite } from "../../redux/actions";
-import { useState } from 'react';
+import { addFavorite, removeFavorite } from "../../redux/actions.js";
+import { useState} from 'react';
+import { useEffect } from 'react';
 
 const Boton = Styles.a`
 display: inline-block;
@@ -16,7 +17,7 @@ border: 2px solid white`;
 
 
 
-function Card({id, name,status, species,gender, image, onClose, addFavorite, removeFavorite}){
+function Card({id, name,status, species,gender, image, onClose, addFavorite, removeFavorite, }){
 
    const [isFav, setIsFav] = useState(false);
 
@@ -27,13 +28,28 @@ function Card({id, name,status, species,gender, image, onClose, addFavorite, rem
       }else{
          setIsFav(true);
          addFavorite({
-            id, name,status, species,gender, image, onClose, addFavorite, removeFavorite
-         })
+            id, name,status, species,gender, image, onClose, addFavorite, removeFavorite,
+         });
       }
-   }
+   };
+
+   // useEffect(() => {
+   //    myFavorites.forEach((fav) => {
+   //       if (fav.id === id) {
+   //          setIsFav(true);
+   //       };
+   //    });
+   // }, [myFavorites]);
 
    return(
       <div>
+         {
+            isFav ? (
+               <button onClick={handleFavorite}>❤️</button>
+            ) : (
+               <button onClick={handleFavorite}>🤍</button>
+            )
+         }
          <Boton onClick={()=>onClose(id)}>X</Boton>
          <Link to={`/detail/${id}`}>
             <h2>Name:{name}</h2>
@@ -53,4 +69,10 @@ const mapDispatchToProps = (dispatch) => {
    }
 }
 
-export default connect(null, mapDispatchToProps )(Card);
+const mapStateToProps = (state) =>{
+   return {
+      myFavorites: state.myFavorites,
+   };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps )(Card);
