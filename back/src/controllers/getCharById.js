@@ -1,0 +1,5 @@
+const KEY = "ffcda1fea673.0fe9b581e186f2c89a23";
+const URL = "https://be-a-rym.up.railway.app/api";
+const getCharById = (res, id) => {}
+
+module.exports = getCharById;
