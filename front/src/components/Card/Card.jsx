@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import Styles from 'styled-components';
 import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from "../../redux/actions.js";
-import { useState} from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from "react";
+import React from "react";
 
 const Boton = Styles.a`
 display: inline-block;
@@ -17,7 +17,7 @@ border: 2px solid white`;
 
 
 
-function Card({id, name,status, species,gender, image, onClose, addFavorite, removeFavorite, }){
+function Card({id, name,status, species,gender, image, onClose, addFavorite, removeFavorite, myFavorites}){
 
    const [isFav, setIsFav] = useState(false);
 
@@ -33,23 +33,22 @@ function Card({id, name,status, species,gender, image, onClose, addFavorite, rem
       }
    };
 
-   // useEffect(() => {
-   //    myFavorites.forEach((fav) => {
-   //       if (fav.id === id) {
-   //          setIsFav(true);
-   //       };
-   //    });
-   // }, [myFavorites]);
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+      }, [myFavorites]);
 
    return(
       <div>
-         {
-            isFav ? (
+         {isFav ? (
                <button onClick={handleFavorite}>❤️</button>
             ) : (
                <button onClick={handleFavorite}>🤍</button>
-            )
-         }
+            )};
+
          <Boton onClick={()=>onClose(id)}>X</Boton>
          <Link to={`/detail/${id}`}>
             <h2>Name:{name}</h2>
@@ -64,10 +63,13 @@ function Card({id, name,status, species,gender, image, onClose, addFavorite, rem
 
 const mapDispatchToProps = (dispatch) => {
    return{
-      addFavorite: (character)=> {dispatch(addFavorite(character))},
-      removeFavorite: (id) => {dispatch(removeFavorite(id))}
-   }
-}
+      addFavorite: (character)=> {
+         dispatch(addFavorite(character))
+      },
+      removeFavorite: (id) => {dispatch(removeFavorite(id));
+      },
+   };
+};
 
 const mapStateToProps = (state) =>{
    return {

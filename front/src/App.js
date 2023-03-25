@@ -19,19 +19,25 @@ function App() {
 
   
   useEffect(() => {
-    !access && navigate("/");
+    !access && navigate("/")
   }, [access]);
 
 
-  const username = "saraviamartin16@gmail.com";
-  const password = "mipass123";
+  const username = "123";
+  const password = "123";
 
 
   const onSearch = (id) => {
     const URL_BASE = "https://be-a-rym.up.railway.app/api";
     const KEY = "ffcda1fea673.0fe9b581e186f2c89a23";
+    
+    
+    if (characters.find((char) => char.id === id)) {
+      return alert("Personaje repetido");
+    }
 
-    fetch(`${URL_BASE}/character/${id}?key=${KEY}`)
+
+    fetch(`${URL_BASE}/onsearch/${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.name) {
@@ -43,7 +49,6 @@ function App() {
   };
 
   const onClose = (id) => {
-    // porque filter.... no modifica el array original
     setCharacters(characters.filter((char) => char.id !== id));
   };
 

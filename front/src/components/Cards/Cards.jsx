@@ -7,14 +7,14 @@ const Cartas = Styles.div`
 `;
 
 
-export default function Cards ({characters, onClose}) {
-   
+export default function Cards ({characters, onClose}) { 
 return (
    <Cartas>
       {characters.map (({id, name, status, species, gender, image}) => {
          return (
             <Card
-            id = {id}
+            key={id}
+            id={id}
             name = {name}
             status= {status}
             species = {species}
