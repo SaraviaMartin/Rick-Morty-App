@@ -1,6 +1,6 @@
 const axios = require("axios");
 const KEY = "ffcda1fea673.0fe9b581e186f2c89a23";
-const URL = "http://localhost:3001/rickandmorty";
+const URL = "https://be-a-rym.up.railway.app/api";
 
 const successH = (response, res) => {
     const { id, image, name, gender, species } = response.data;

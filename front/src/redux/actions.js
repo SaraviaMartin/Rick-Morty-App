@@ -13,7 +13,7 @@ export const removeFavorite = (id) => {
 
 export const getCharacterDetail = (id) => {
   return function (dispatch) {
-    const URL_BASE = "https://be-a-rym.up.railway.app/api";
+    const URL_BASE = "http://localhost:3001/rickandmorty";
 
     fetch(`${URL_BASE}/detail/${id}`)
       .then((response) => response.json())
