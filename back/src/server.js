@@ -1,11 +1,23 @@
-require("dotenv").config();
-const express = require("express");
+const http = require("http");
+const getCharById = require("./controllers/getCharById");
+const getCharDetail = require("./controllers/getCharDetail");
 
-const PORT = process.env.PORT || 3001
+http
+  .createServer((req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
-const server = express();
+    const { url } = req;
 
-server.listen(PORT, () =>{
-  console.log(`Listening on port  ${PORT}`)
-}) 
+    if (url.includes("onsearch")) {
+      const id = url.split("/").at(-1);
+      getCharById(res, id);
+    }
+
+    if (url.includes("detail")) {
+      const id = url.split("/").at(-1);
+      getCharDetail(res, id);
+    }
+  })
+  .listen(3001, "localhost");
+
 
